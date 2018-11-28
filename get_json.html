@@ -23,11 +23,6 @@ $(document).ready(function(){
           header = table.createTHead();
           var headerRow = header.insertRow();
 
-          /*headerRow.insertCell().innerText('<td><b>id</b></td>');
-          headerRow.insertCell().innerText('<td><b>Language</b></td>');
-          headerRow.insertCell().innerText('<td><b>Edition</b></td>');
-          headerRow.insertCell().innerText('<td><b>Author</b></td>');*/
-
           headerRow.innerHTML =
             '<th><b>Id</b></th>' +
             '<th><b>Language</b></th>' +
@@ -58,7 +53,6 @@ $(document).ready(function(){
             tr.appendChild(td)
 
             table.appendChild(tr)
-
             outputDiv.appendChild(table)
           }
         }
