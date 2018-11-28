@@ -1,0 +1,29 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+      $.ajax({
+        //change yourid below
+        url:"https://api.myjson.com/bins/yourid",
+        type:"PUT",
+        data:'{"key_updated":"value_updated"}',
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+        success: function(data, textStatus, jqXHR){
+          console.log(data)
+        }
+      });
+    });
+});
+</script>
+</head>
+<body>
+
+<div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+
+<button>Get External Content</button>
+
+</body>
+</html>

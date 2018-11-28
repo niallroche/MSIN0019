@@ -1,0 +1,36 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+//callback when page load has completed
+$(document).ready(function(){
+    //button handler
+    $("button").click(function(){
+      //TODO replace the id to your own value
+      $.getJSON("https://api.myjson.com/bins/gu8q2", function(result){
+            //iterate of each object returned
+            $.each(result, function(i, field){
+              //iterate of each property name and value
+              for ( var x=0; x<field.length; x++) {
+                for ( var key in field[x]) {
+                		$("#outputDiv").append("<b>"+key + "</b>: " + field[x][key].toString()+"<br />");
+                }
+                $("#outputDiv").append("<br />");
+              }
+            });
+        });
+    });
+});
+</script>
+</head>
+<body>
+
+<div id="div1">
+  <h2>Let jQuery AJAX and JSON Test</h2>
+  <div id="outputDiv"></div>
+</div>
+
+<button>Get External JSON Content</button>
+
+</body>
+</html>

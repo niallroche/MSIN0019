@@ -1,0 +1,80 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+//callback when page load has completed
+$(document).ready(function(){
+    //button handler
+    $("button").click(function(){
+      $.ajax({
+        //TODO replace the id to your own value when you put some content at http://myjson.com
+        url:"https://api.myjson.com/bins/gu8q2",
+
+        //sucess is a function that is called if the fetch of the data went ok
+        success: function(data, textStatus, jqXHR){
+          //check the console output in inspector to view the JSON data returned or any errors
+          console.log(data)
+          var outputDiv = document.getElementById('outputDiv');
+
+          //create a table to format the output the JSON data
+          var table = document.createElement('table');
+
+          //create a header row
+          header = table.createTHead();
+          var headerRow = header.insertRow();
+
+          /*headerRow.insertCell().innerText('<td><b>id</b></td>');
+          headerRow.insertCell().innerText('<td><b>Language</b></td>');
+          headerRow.insertCell().innerText('<td><b>Edition</b></td>');
+          headerRow.insertCell().innerText('<td><b>Author</b></td>');*/
+
+          headerRow.innerHTML =
+            '<th><b>Id</b></th>' +
+            '<th><b>Language</b></th>' +
+            '<th><b>Edition</b></th>' +
+            '<th><b>Author</b></th>'
+
+          //iterate over each book returned
+          for (var i = 0; i < data.book.length; i++) {
+            var tr = document.createElement('tr');
+            var td = document.createElement('td');
+            var text = document.createTextNode(data.book[i].id);
+            td.appendChild(text)
+            tr.appendChild(td)
+
+            td = document.createElement('td');
+            text = document.createTextNode(data.book[i].language);
+            td.appendChild(text)
+            tr.appendChild(td)
+
+            td = document.createElement('td');
+            text = document.createTextNode(data.book[i].edition);
+            td.appendChild(text)
+            tr.appendChild(td)
+
+            td = document.createElement('td');
+            text = document.createTextNode(data.book[i].author);
+            td.appendChild(text)
+            tr.appendChild(td)
+
+            table.appendChild(tr)
+
+            outputDiv.appendChild(table)
+          }
+        }
+      });
+    });
+});
+</script>
+</head>
+<body>
+
+<div id="div1">
+  <h2>Let jQuery AJAX and JSON Test</h2>
+  <div id="outputDiv"></div>
+</div>
+
+<button>Get External JSON Content</button>
+
+</body>
+</html>
